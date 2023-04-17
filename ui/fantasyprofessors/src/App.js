@@ -5,6 +5,7 @@ import Home from './pages/home';
 import Articles from './pages/articles';
 import Article from './pages/article';
 import MainNavigation from './components/navigation/mainNavigation';
+import Authenticate from './pages/authenticate';
 
 function App() {
   return ( 
@@ -18,8 +19,11 @@ function App() {
           <Route path='/articles'>
             <Articles />
           </Route>
-          <Route path='/article/:aid' exact>
+          <Route path='/article/:articleId' exact>
             <Article />
+          </Route>
+          <Route path='/auth' exact>
+            <Authenticate />
           </Route>
           <Redirect to="/" />
         </Switch>

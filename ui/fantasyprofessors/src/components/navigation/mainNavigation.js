@@ -121,7 +121,7 @@ const MainNavigation = props => {
                 <NavLink to="/articles">
                     <Button key="Articles" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>Articles</Button>
                 </NavLink>
-                <NavLink to="/login">
+                <NavLink to="/auth">
                     <Button key="Login" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>Login</Button>
                 </NavLink>
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 const ArticleComponent = props => {
-    if(props.item.length === 0) {
+    if(!props.item || props.item.length === 0) {
         return (<h2>This article could not be found.</h2>)
     }
     return (
