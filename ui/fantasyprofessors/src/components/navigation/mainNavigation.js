@@ -17,21 +17,10 @@ import MenuItem from '@mui/material/MenuItem';
 import SchoolIcon from '@mui/icons-material/School';
 
 import "./mainNavigation.css"
-import MainHeader from "./mainHeader";
-import NavLinks from "./navLinks";
+ 
 
 const MainNavigation = props => {
-    // return <MainHeader>
-    //     <button className="menu-button">
-    //         <span />
-    //         <span />
-    //         <span />
-    //     </button>
-    //     <h1 className="nav-title"><Link to="/">FantasyProfessors</Link></h1>
-    //     <nav>
-    //         <NavLinks />
-    //     </nav>
-    // </MainHeader>
+
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 

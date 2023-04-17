@@ -1,7 +1,7 @@
 import React from "react";
 
-import ArticleList from "../components/articleList";
-
+import ArticleList from "../components/articles/articleList";
+ 
 const Articles = () => {
     const ARTICLES = [
         {
