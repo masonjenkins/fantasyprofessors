@@ -14,7 +14,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import SchoolIcon from '@mui/icons-material/School';
 
 import "./mainNavigation.css"
 import MainHeader from "./mainHeader";
@@ -48,7 +48,7 @@ const MainNavigation = props => {
         <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              <SchoolIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
               <Typography
                 variant="h6"
                 noWrap
@@ -107,7 +107,7 @@ const MainNavigation = props => {
                   </MenuItem>
                 </Menu>
               </Box>
-              <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+              <SchoolIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
               <Typography
                 variant="h5"
                 noWrap
