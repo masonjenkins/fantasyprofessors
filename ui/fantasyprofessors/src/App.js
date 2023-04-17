@@ -18,6 +18,9 @@ function App() {
           <Route path='/articles'>
             <Articles />
           </Route>
+          <Route path='/article/:aid' exact>
+            <Article />
+          </Route>
           <Redirect to="/" />
         </Switch>
       </main>
