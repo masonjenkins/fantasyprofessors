@@ -51,6 +51,7 @@ const MainNavigation = props => {
                   letterSpacing: '.3rem',
                   color: 'inherit',
                   textDecoration: 'none',
+                  flex: 4
                 }}
               >
                 FANTASYPROFESSORS
