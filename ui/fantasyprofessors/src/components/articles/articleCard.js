@@ -13,10 +13,10 @@ const ArticleCard = props => {
     return (
             <div className="card-content">
                 
-                    <Card sx={{ maxWidth: 300 }}>
+                    <Card>
                         <CardActionArea>
                         <Link to={`/article/${props.id}`}>
-                                <CardMedia component="img" image={props.image} alt={props.title} height='250'/>
+                                <CardMedia component="img" image={props.image} alt={props.title} maxHeight= {window.innerWidth > 800 ? '400' : '250'}/>
                             <CardContent>
                                 <Typography gutterBottom variant='h4' component='div'>{props.title}</Typography>
                                 <Typography variant='body2' color='text.secondary'>{props.teaser}</Typography>
