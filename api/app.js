@@ -4,10 +4,15 @@ const mongoose = require('mongoose')
 const articlesRoutes = require('./routes/articlesRoutes');
 const usersRoutes = require('./routes/usersRoutes');
 const secrets = require('./environment')
-
+const HttpError = require('./models/httpError')
 const app = express();
 
 app.use('/api/articles', articlesRoutes);
+app.use('/api/users', usersRoutes);
+
+app.use((req, res, next) => {
+    return new HttpError('Route not found.', 404)
+});
 
 app.use((error, req, res, next) => {
     if(res.headerSent) {
