@@ -1,5 +1,5 @@
 const HttpError = require('../models/httpError')
-
+const { validationResult } = require('express-validator')
 const Article = require('../models/article');
 
 
@@ -56,6 +56,10 @@ const getArticles = async (req, res, next) => {
 }
 
 const createArticle = async (req, res, next) => {
+    const errors = validationResult(req)
+    if(!errors.isEmpty()) {
+        return next(new HttpError('Invalid API Call arguments. Try again with correct params.', 400))
+    }
     const { title, author, date, image, teaser, body, tags } = req.body
     let newArticle
 
@@ -97,7 +101,7 @@ const editArticle = async (req, res, next) => {
 }
 
 const deleteArticle = async (req, res, next) => {
-    
+
 }
 
 exports.getArticleById = getArticleById;
