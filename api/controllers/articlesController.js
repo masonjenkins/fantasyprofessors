@@ -56,6 +56,7 @@ const getArticles = async (req, res, next) => {
 }
 
 const createArticle = async (req, res, next) => {
+    const { title, author, date, image, teaser, body, tags } = req.body
     let newArticle
 
     const createdArticle = new Article({
@@ -80,6 +81,27 @@ const createArticle = async (req, res, next) => {
     res.status(201).json({ id: newArticle })
 }
 
+const editArticle = async (req, res, next) => {
+    const { title, image, teaser, body, tags } = req.body
+    const articleId = req.params.aid
+
+    let updatedPlace
+
+    try {
+        updatedPlace = await Article.findById(articleId)
+    } catch (e) {
+        return new HttpError('Error retrieving article.', 500)
+    }
+
+
+}
+
+const deleteArticle = async (req, res, next) => {
+    
+}
+
 exports.getArticleById = getArticleById;
 exports.getArticles = getArticles;
 exports.createArticle = createArticle;
+exports.editArticle = editArticle;
+exports.deleteArticle = deleteArticle;
