@@ -15,8 +15,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SchoolIcon from '@mui/icons-material/School';
-
-import "./mainNavigation.css"
  
 
 const MainNavigation = props => {
