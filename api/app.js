@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const mongoose = require('mongoose')
 const articlesRoutes = require('./routes/articlesRoutes');
 const usersRoutes = require('./routes/usersRoutes');
+const secrets = require('./environment')
 
 const app = express();
 
@@ -19,4 +20,7 @@ app.use((error, req, res, next) => {
     })
 })
 
-app.listen(5000);
+mongoose
+    .connect(`mongodb+srv://${secrets.mongoUser}:${secrets.mongoPassword}@cluster0.shqmdcm.mongodb.net/?retryWrites=true&w=majority`)
+    .then(() => {app.listen(3000)})
+    .catch(e => {console.log(e)})
