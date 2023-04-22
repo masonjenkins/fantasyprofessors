@@ -1,5 +1,8 @@
 const HttpError = require('../models/httpError')
 
+const Article = require('../models/article');
+
+
 const testArticles = [
     {
         _id: '1',
@@ -24,22 +27,59 @@ const testArticles = [
 ]
 
 
-const getArticleById = (req, res, next) => {
+const getArticleById = async (req, res, next) => {
     const articleId = req.params.aid;
-    const article = testArticles.find(art => {
-        return art._id === articleId;
-    });
+    let article
+    try {
+        article = await Article.findById(articleId)
+    } catch (e) {
+        return next(new HttpError("Error retrieving article.", 500))
+    }
 
     if (!article) {
         return next(new HttpError('Article not found.', 404));
     }
 
-    res.json({articles: article});
+    res.json({ articles: article.toObject() });
 }
 
-const getArticles = (req, res, next) => {
-    res.json({articles: testArticles})
+const getArticles = async (req, res, next) => {
+
+    let articles
+
+    try {
+        articles = await Article.find()
+    } catch (e) {
+        return next(new HttpError('Error retrieving articles.', 500))
+    }
+    res.json({ articles: testArticles.toObject() })
+}
+
+const createArticle = async (req, res, next) => {
+    let newArticle
+
+    const createdArticle = new Article({
+        title,
+        author,
+        date,
+        image,
+        teaser,
+        body,
+        tags
+    })
+
+    try {
+        await createdArticle.save().then(item => {
+            newArticle = item._id
+        })
+    } catch (e) {
+        const err = new HttpError("Error creating article. Try again.", 500)
+        return (next(err))
+    }
+
+    res.status(201).json({ id: newArticle })
 }
 
 exports.getArticleById = getArticleById;
 exports.getArticles = getArticles;
+exports.createArticle = createArticle;

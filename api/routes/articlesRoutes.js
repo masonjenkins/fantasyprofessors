@@ -6,4 +6,6 @@ router.get('/', articlesController.getArticles);
 
 router.get('/search/:aid', articlesController.getArticleById);
 
+router.post('/create', articlesController.createArticle);
+
 module.exports = router;
