@@ -65,7 +65,7 @@ const Home = () => {
                             <Carousel.Caption>
                                 <h5>{article.title}</h5>
                                 <p>{article.teaser}</p>
-                                <Link to={`article/${article._id}`}><Button variant="contained" color="error">View More</Button></Link>
+                                <Link to={`article/${article._id}`}><Button variant="contained" color="primary"><strong>View More</strong></Button></Link>
                             </Carousel.Caption>
                         </Carousel.Item>
                     )
