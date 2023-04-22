@@ -1,8 +1,8 @@
 import React from "react";
-import ArticleCard from "../components/articles/articleCard";
+import ArticleList from "../components/articles/articleList";
 import Carousel from 'react-bootstrap/Carousel'
 import 'bootstrap/dist/css/bootstrap.css'
-import { Button } from '@mui/material'
+import { Button, Divider } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 
@@ -13,7 +13,7 @@ const Home = () => {
             title: "Title1",
             author: "Author1",
             // date: 01/01/2020,
-            image: "https://www.profootballnetwork.com/wp-content/uploads/2021/02/nfl-logo-shield-history-design-meaning.jpg",
+            image: '',
             teaser: "This is a test teaser. Lots of text in this sentence.",
             body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             tags: ["test", "article", "testing"]
@@ -55,6 +55,7 @@ const Home = () => {
     const breakPoints = [{width: 1, itemsToShow: 1}]
 
     return (
+        <>
         <div style={{backgroundColor: 'black'}}>
             <Carousel>
                 {ARTICLES.map(article => {
@@ -71,6 +72,18 @@ const Home = () => {
                 })}
             </Carousel>
         </div>
+        <div>
+            <br />
+            <Divider component={'h2'}/>
+            <br />
+            <h2 style={{textAlign: 'center'}}>RECENT ARTICLES</h2>
+            <br />
+            <ArticleList items={ARTICLES} />
+            <br />
+            <br />
+            <br />
+        </div>
+        </>
     ) 
 }
 
