@@ -28,6 +28,6 @@ app.use((error, req, res, next) => {
 })
 
 mongoose
-    .connect(`mongodb+srv://${secrets.mongoUser}:${secrets.mongoPassword}@cluster0.shqmdcm.mongodb.net/?retryWrites=true&w=majority`)
+    .connect(`mongodb+srv://${secrets.mongoUser}:${secrets.mongoPassword}@cluster0.shqmdcm.mongodb.net/fantasyprofessors?retryWrites=true&w=majority`)
     .then(() => {app.listen(3000)})
     .catch(e => {console.log(e)})
