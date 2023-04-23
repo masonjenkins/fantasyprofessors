@@ -10,6 +10,9 @@ module.exports = (req, res, next) => {
         }
         const decodedToken = jwt.verify(token, secrets.jwtSecret)
         req.userRole = { isAdmin: decodedToken.isAdmin }
+        if(!decodedToken.isAdmin) {
+            return next(new HttpError('User is not authorized to perform this action.', 401))
+        }
         next()
     } catch (e) {
         return next(new HttpError('Failed to authenticate user.', 401))
