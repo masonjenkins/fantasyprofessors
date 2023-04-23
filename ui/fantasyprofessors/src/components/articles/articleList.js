@@ -1,5 +1,4 @@
 import React from "react";
-import "./articleList.css";
 import ArticleCard from "./articleCard";
 import Grid from "@mui/material/Grid";
 
@@ -14,7 +13,7 @@ const ArticleList = props => {
 
     return ( 
         <div>
-            <h2></h2>
+            <br />
             <Grid container spacing={2} sx={{margin: "auto", maxWidth: '80%', textAlign: 'center'}}>
                 {props.items.map(article => {
                     return (
