@@ -1,30 +1,7 @@
 const HttpError = require('../models/httpError')
 const { validationResult } = require('express-validator')
 const Article = require('../models/article');
-
-
-const testArticles = [
-    {
-        _id: '1',
-        title: "Title1",
-        author: "Author1",
-        date: 01/01/2020,
-        image: "https://www.profootballnetwork.com/wp-content/uploads/2021/02/nfl-logo-shield-history-design-meaning.jpg",
-        teaser: "This is a test teaser. Lots of text in this sentence.",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        tags: ["test", "article", "testing"]
-    },
-    {
-        _id: '2',
-        title: "Title2",
-        author: "Author2",
-        date: 01/01/2021,
-        image: "https://logos-world.net/wp-content/uploads/2020/05/Kansas-City-Chiefs-logo.png",
-        teaser: "This is a test teaser. Lots of text in this sentence.",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        tags: ["test", "article", "testing"]
-    }
-]
+const _ = require('lodash')
 
 
 const getArticleById = async (req, res, next) => {
@@ -40,7 +17,7 @@ const getArticleById = async (req, res, next) => {
         return next(new HttpError('Article not found.', 404));
     }
 
-    res.json({ articles: article.toObject() });
+    res.json({ articles: article.toObject({ getters: true })});
 }
 
 const getArticles = async (req, res, next) => {
@@ -48,11 +25,11 @@ const getArticles = async (req, res, next) => {
     let articles
 
     try {
-        articles = await Article.find()
+        articles = await Article.find({})
     } catch (e) {
         return next(new HttpError('Error retrieving articles.', 500))
     }
-    res.json({ articles: testArticles.toObject() })
+    res.json({ articles: articles.map(article => {article.toObject({ getters: true })})})
 }
 
 const createArticle = async (req, res, next) => {
@@ -86,21 +63,60 @@ const createArticle = async (req, res, next) => {
 }
 
 const editArticle = async (req, res, next) => {
-    const { title, image, teaser, body, tags } = req.body
     const articleId = req.params.aid
 
-    let updatedPlace
+    if(_.isEmpty(req.body)) {
+        return next(new HttpError('No params were sent in the API call. Try again.', 400))
+    }
+
+    const title = req.body.title ? req.body.title : ""
+    const author = req.body.author ? req.body.author : ""
+    const date = req.body.date ? req.body.date : ""
+    const image = req.body.image ? req.body.image : ""
+    const teaser = req.body.teaser ? req.body.teaser : ""
+    const body = req.body.body ? req.body.body : ""
+    const tags = req.body.tags ? req.body.tags : ""
+
+    let updatedArticle
 
     try {
-        updatedPlace = await Article.findById(articleId)
+        updatedArticle = await Article.findById(articleId)
     } catch (e) {
-        return new HttpError('Error retrieving article.', 500)
+        return next(new HttpError('Error retrieving article.', 500))
+    }
+
+    if(title) {updatedArticle.title = title}
+    if(author) {updatedArticle.author = author}
+    if(date) {updatedArticle.date = date}
+    if(image) {updatedArticle.image = image}
+    if(teaser) {updatedArticle.teaser = teaser}
+    if(body) {updatedArticle.body = body}
+    if(tags) {updatedArticle.tags = tags}
+
+
+    try {
+        await updatedArticle.save()
+    } catch(e) {
+        return next(new HttpError('Error editing article.', 500))
     }
 
 
+    res.status(200).json({ article: updatedArticle.toObject({ getters: true })})
 }
 
 const deleteArticle = async (req, res, next) => {
+    const articleId = req.params.aid
+
+    let article 
+
+    try {
+        article = Article.findById(articleId)
+        article.remove()
+    } catch (e) {
+        return next(new HttpError("Error deleting article.", 500))
+    }
+
+    res.status(200).json({ message: "Article deleted." })
 
 }
 

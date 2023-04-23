@@ -7,6 +7,8 @@ const secrets = require('./environment')
 const HttpError = require('./models/httpError')
 const app = express();
 
+app.use(bodyParser.json());
+
 app.use('/api/articles', articlesRoutes);
 app.use('/api/users', usersRoutes);
 

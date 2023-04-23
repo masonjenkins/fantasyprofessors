@@ -18,7 +18,7 @@ router.post('/create',
     check('tags').not().isEmpty()
     ], articlesController.createArticle);
 
-router.patch('/:aid', check('id').not().isEmpty(), articlesController.editArticle);
+router.patch('/:aid', articlesController.editArticle);
 
 router.delete('/:aid', articlesController.deleteArticle);
 
