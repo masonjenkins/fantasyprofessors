@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
 const articlesController = require('../controllers/articlesController');
-
+const authorizationCheck = require('../middleware/authorizationCheck')
 
 router.get('/', articlesController.getArticles);
 
 router.get('/search/:aid', articlesController.getArticleById);
+
+router.use(authorizationCheck);
 
 router.post('/create', 
     [check('title').not().isEmpty(),

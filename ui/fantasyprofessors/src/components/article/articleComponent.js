@@ -4,15 +4,13 @@ const ArticleComponent = props => {
     if(!props.item || props.item.length === 0) {
         return (<h2>This article could not be found.</h2>)
     }
-    console.log('hello')
-    console.log(props.item)
     return (
 
         
     <div>
         <br />
         <div style={{backgroundColor: 'black'}}>
-            <img src={props.item.image} style={{maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
+            <img src={props.item.image} alt={props.item.title} style={{maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
         </div>
         <br />
         <div style={{textAlign: 'center'}}>
