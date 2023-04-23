@@ -16,20 +16,20 @@ const getArticleById = async (req, res, next) => {
     if (!article) {
         return next(new HttpError('Article not found.', 404));
     }
-
-    res.json({ articles: article.toObject({ getters: true })});
+    
+    res.json({ articles: article});
 }
 
 const getArticles = async (req, res, next) => {
-
     let articles
 
     try {
-        articles = await Article.find({})
+        articles = await Article.find()
     } catch (e) {
         return next(new HttpError('Error retrieving articles.', 500))
     }
-    res.json({ articles: articles.map(article => {article.toObject({ getters: true })})})
+
+    res.json({ articles })
 }
 
 const createArticle = async (req, res, next) => {
@@ -101,7 +101,7 @@ const editArticle = async (req, res, next) => {
     }
 
 
-    res.status(200).json({ article: updatedArticle.toObject({ getters: true })})
+    res.json({ article: updatedArticle.toObject({ getters: true })})
 }
 
 const deleteArticle = async (req, res, next) => {
@@ -116,8 +116,7 @@ const deleteArticle = async (req, res, next) => {
         return next(new HttpError("Error deleting article.", 500))
     }
 
-    res.status(200).json({ message: "Article deleted." })
-
+    res.json({ message: "Article deleted." })
 }
 
 exports.getArticleById = getArticleById;
