@@ -30,8 +30,8 @@ const Article = () => {
             }
         }
         fetchArticle()
-    }, [])
-   
+    },[])
+// eslint-disable-next-line
     {return !isLoading && data && <ArticleComponent item={data} />}
 }
 

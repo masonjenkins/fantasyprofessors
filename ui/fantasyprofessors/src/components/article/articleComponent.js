@@ -1,4 +1,5 @@
 import React from "react";
+import API_URL from "../../secrets";
 
 const ArticleComponent = props => {
     if(!props.item || props.item.length === 0) {
@@ -10,7 +11,7 @@ const ArticleComponent = props => {
     <div>
         <br />
         <div style={{backgroundColor: 'black'}}>
-            <img src={props.item.image} alt={props.item.title} style={{maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
+            <img src={`${API_URL}/${props.item.image}`} alt={props.item.title} style={{maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
         </div>
         <br />
         <div style={{textAlign: 'center'}}>

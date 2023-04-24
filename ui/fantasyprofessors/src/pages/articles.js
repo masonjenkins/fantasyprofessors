@@ -31,7 +31,7 @@ const Articles = () => {
         fetchArticles()
     }, [])
     
-
+// eslint-disable-next-line
     {return !isLoading && data && <ArticleList items={data}/>}
 }
 

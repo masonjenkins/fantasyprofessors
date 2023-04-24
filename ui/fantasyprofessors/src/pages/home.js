@@ -42,7 +42,7 @@ const Home = () => {
                 {!isLoading && data && data.map(article => {
                     return (
                         <Carousel.Item>
-                            <img className="d-block w-100" src={article.image} alt={article.title} style={{width: '100%', maxWidth: '1200px', maxHeight: '615px', margin: 'auto'}}/>
+                            <img className="d-block w-100" src={`${API_URL}/${article.image}`} alt={article.title} style={{width: '100%', maxWidth: '1200px', maxHeight: '615px', margin: 'auto'}}/>
                             <Carousel.Caption>
                                 <h5>{article.title}</h5>
                                 <p>{article.teaser}</p>

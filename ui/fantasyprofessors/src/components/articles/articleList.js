@@ -1,6 +1,7 @@
 import React from "react";
 import ArticleCard from "./articleCard";
 import Grid from "@mui/material/Grid";
+import API_URL from "../../secrets";
 
 const ArticleList = props => {
     if(props.items.length === 0) {
@@ -18,7 +19,7 @@ const ArticleList = props => {
                 {props.items.map(article => {
                     return (
                         <Grid item xs={12} sm={6}>
-                            <ArticleCard id={article._id} title={article.title} author={article.author} date={article.date} image={article.image} teaser={article.teaser} body={article.body} tags={article.tags} />
+                            <ArticleCard id={article._id} title={article.title} author={article.author} date={article.date} image={`${API_URL}/${article.image}`} teaser={article.teaser} body={article.body} tags={article.tags} />
                         </Grid>
                     )
                 })}   

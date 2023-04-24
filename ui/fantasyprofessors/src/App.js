@@ -32,8 +32,8 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const tokenRemainingTime = tokenExpiration.getTime() - new Date().getTime()
     if(token) {
+      const tokenRemainingTime = tokenExpiration.getTime() - new Date().getTime()
       logoutTimer = setTimeout(logout, tokenRemainingTime)
     } else {
       clearTimeout(logoutTimer)
