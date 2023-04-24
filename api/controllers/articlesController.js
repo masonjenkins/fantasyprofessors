@@ -34,14 +34,12 @@ const getArticles = async (req, res, next) => {
 
 const createArticle = async (req, res, next) => {
     const errors = validationResult(req)
-    console.log(req.body.image)
     if(!errors.isEmpty()) {
-        console.log(errors)
         return next(new HttpError('Invalid API Call arguments. Try again with correct params.', 400))
     }
-    // if(!req.file) {
-    //     return next(new HttpError('Error saving image. Try again.', 500))
-    // }
+    if(!req.file) {
+        return next(new HttpError('Error saving image. Try again.', 500))
+    }
     const { title, author, date, teaser, body, tags } = req.body
     let newArticle
 

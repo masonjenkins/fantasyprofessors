@@ -50,12 +50,11 @@ const CreateArticle = () => {
             if(!event.target.image.value) {
                 throw new Error('No image uploaded!')
             }
-            console.log(file)
             const formData = new FormData()
             formData.append('title', event.target.title.value)
             formData.append('author', event.target.author.value)
             formData.append('date', date)
-            formData.append('image', event.target.image.value)
+            formData.append('image', file)
             formData.append('teaser', event.target.teaser.value)
             formData.append('body', event.target.body.value)
             formData.append('tags', event.target.tags.value)

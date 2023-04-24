@@ -15,7 +15,6 @@ router.post('/create', fileUpload.single('image'),
     [check('title').not().isEmpty(),
     check('author').not().isEmpty(),
     check('date').not().isEmpty(),
-    check('image').not().isEmpty(),
     check('teaser').not().isEmpty(),
     check('body').not().isEmpty(),
     check('tags').not().isEmpty()
