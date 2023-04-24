@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'; 
-import API_URL from "../secrets";
+import secrets from "../secrets";
 
 import ArticleComponent from "../components/article/articleComponent";
 
@@ -15,7 +15,7 @@ const Article = () => {
         const fetchArticle = async () => {
             setIsLoading(true)
             try {
-                const response = await fetch(`${API_URL}/articles/search/${articleId}`)
+                const response = await fetch(`${secrets.API_URL}/articles/search/${articleId}`)
                 const responseData = await response.json()
 
                 if (!response.ok) {
