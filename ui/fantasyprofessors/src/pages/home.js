@@ -11,8 +11,6 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [data, setData] = useState()
 
-    console.log()
-
     useEffect(() => {
         const fetchArticles = async () => {
             setIsLoading(true)

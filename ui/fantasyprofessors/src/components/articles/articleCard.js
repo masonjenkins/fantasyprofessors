@@ -11,7 +11,6 @@ import "./articleCard.css";
 import secrets from "../../secrets";
 
 const ArticleCard = props => {
-    console.log(props)
     return (
             <div className="card-content">
                 

@@ -5,7 +5,6 @@ const ArticleComponent = props => {
     if(!props.item || props.item.length === 0) {
         return (<h2>This article could not be found.</h2>)
     }
-    console.log(props)
     return (
         <div>
             <br />
