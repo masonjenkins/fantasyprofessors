@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const HttpError = require('../models/httpError')
-const secrets = require('../environment')
 
 module.exports = (req, res, next) => {
     try {
@@ -8,7 +7,7 @@ module.exports = (req, res, next) => {
         if(!token) {
             throw new Error('Failed to authenticate user.')
         }
-        const decodedToken = jwt.verify(token, secrets.jwtSecret)
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
         if(!decodedToken.isAdmin) {
             return next(new HttpError('User is not authorized to perform this action.', 401))
         }
