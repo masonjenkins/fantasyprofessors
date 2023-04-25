@@ -4,20 +4,17 @@ import Carousel from 'react-bootstrap/Carousel'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Button, Divider } from '@mui/material'
 import { Link } from 'react-router-dom'
-import secrets from "../secrets";
 
 
 const Home = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [data, setData] = useState()
 
-    console.log()
-
     useEffect(() => {
         const fetchArticles = async () => {
             setIsLoading(true)
             try {
-                const response = await fetch(`${secrets.API_URL}/articles`)
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/articles`)
                 const responseData = await response.json()
 
                 if(!response.ok) {
@@ -44,7 +41,7 @@ const Home = () => {
                 {!isLoading && data && data.map(article => {
                     return (
                         <Carousel.Item>
-                            <img className="d-block w-100" src={`${secrets.IMAGES_URL}/${article.image}`} alt={article.title} style={{width: '100%', maxWidth: '1200px', maxHeight: '615px', margin: 'auto'}}/>
+                            <img className="d-block w-100" src={`${process.env.REACT_APP_IMAGES_URL}/${article.image}`} alt={article.title} style={{width: '100%', maxWidth: '1200px', maxHeight: '615px', margin: 'auto'}}/>
                             <Carousel.Caption>
                                 <h5>{article.title}</h5>
                                 <p>{article.teaser}</p>

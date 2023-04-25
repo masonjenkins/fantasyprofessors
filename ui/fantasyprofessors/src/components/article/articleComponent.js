@@ -1,16 +1,14 @@
 import React from "react";
-import secrets from "../../secrets";
 
 const ArticleComponent = props => {
     if(!props.item || props.item.length === 0) {
         return (<h2>This article could not be found.</h2>)
     }
-    console.log(props)
     return (
         <div>
             <br />
             <div style={{backgroundColor: 'black'}}>
-                <img src={`${secrets.IMAGES_URL}/${props.item.image}`} alt={props.item.title} style={{maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
+                <img src={`${process.env.REACT_APP_IMAGES_URL}/${props.item.image}`} alt={props.item.title} style={{maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
             </div>
             <br />
             <div style={{textAlign: 'center'}}>

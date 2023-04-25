@@ -1,6 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { TextField, Button, CircularProgress, Alert, AlertTitle, Box, Typography, Modal } from '@mui/material'
-import secrets from "../secrets";
 import { AuthContext } from "../context/authenticationContext";
 
 const CreateArticle = () => {
@@ -60,7 +59,7 @@ const CreateArticle = () => {
             formData.append('tags', event.target.tags.value)
 
             
-            const response = await fetch(`${secrets.API_URL}/articles/create`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/articles/create`, {
                 method: "POST",
                 body: formData, 
                 headers: {

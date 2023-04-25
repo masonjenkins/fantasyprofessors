@@ -3,7 +3,6 @@ const { validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
-const secrets = require('../environment')
 
 const signup = async (req, res, next) => {
     const errors = validationResult(req)
@@ -40,7 +39,7 @@ const signup = async (req, res, next) => {
 
         token = jwt.sign(
             {userId: newUser.id, email: newUser.email, isAdmin: newUser.isAdmin},
-            secrets.jwtSecret, {expiresIn: '24h'}
+            process.env.JWT_SECRET, {expiresIn: '24h'}
         )
 
         await newUser.save()
@@ -88,7 +87,7 @@ const login = async (req, res, next) => {
     try {
         token = jwt.sign(
             {userId: existingUser.id, email: existingUser.email, isAdmin: existingUser.isAdmin},
-            secrets.jwtSecret, {expiresIn: '24h'}
+            process.env.JWT_SECRET, {expiresIn: '24h'}
         )
     } catch (e) {
         return next(new HttpError('Error authenticating user. Try again.', 500))
