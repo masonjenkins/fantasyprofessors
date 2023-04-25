@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'; 
-import secrets from "../secrets";
 
 import ArticleComponent from "../components/article/articleComponent";
 
@@ -15,7 +14,7 @@ const Article = () => {
         const fetchArticle = async () => {
             setIsLoading(true)
             try {
-                const response = await fetch(`${secrets.API_URL}/articles/search/${articleId}`)
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/articles/search/${articleId}`)
                 const responseData = await response.json()
 
                 if (!response.ok) {

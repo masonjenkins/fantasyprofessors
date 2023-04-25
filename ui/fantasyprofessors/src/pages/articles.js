@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ArticleList from "../components/articles/articleList";
-import secrets from "../secrets";
 
  
 const Articles = () => {
@@ -13,7 +12,7 @@ const Articles = () => {
         const fetchArticles = async () => {
             setIsLoading(true)
             try {
-                const response = await fetch(`${secrets.API_URL}/articles`)
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/articles`)
                 const responseData = await response.json()
 
                 if(!response.ok) {
