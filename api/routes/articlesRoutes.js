@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
 const articlesController = require('../controllers/articlesController');
-const authorizationCheck = require('../middleware/authorizationCheck')
+const authorizationCheck = require('../middleware/authorizationCheck');
+const fileUpload = require('../middleware/fileUpload')
 
 router.get('/', articlesController.getArticles);
 
@@ -10,11 +11,10 @@ router.get('/search/:aid', articlesController.getArticleById);
 
 router.use(authorizationCheck);
 
-router.post('/create', 
+router.post('/create', fileUpload.single('image'),
     [check('title').not().isEmpty(),
     check('author').not().isEmpty(),
     check('date').not().isEmpty(),
-    check('image').not().isEmpty(),
     check('teaser').not().isEmpty(),
     check('body').not().isEmpty(),
     check('tags').not().isEmpty()

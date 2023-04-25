@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Box, CircularProgress, TextField, Button, Alert, AlertTitle } from '@mui/material'
 import { AuthContext } from "../context/authenticationContext";
-import API_URL from "../secrets";
+import secrets from "../secrets";
 
 
 const Authenticate = props => {
@@ -18,7 +18,7 @@ const Authenticate = props => {
 
         if(isLoginMode) {
             try {
-                const response = await fetch(`${API_URL}/users/login`, {
+                const response = await fetch(`${secrets.API_URL}/users/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ const Authenticate = props => {
         }
         else {
             try {
-                const response = await fetch(`${API_URL}/users/signup`, {
+                const response = await fetch(`${secrets.API_URL}/users/signup`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
