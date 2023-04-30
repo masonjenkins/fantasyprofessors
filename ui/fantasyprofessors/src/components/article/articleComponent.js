@@ -8,7 +8,7 @@ const ArticleComponent = props => {
         <div>
             <br />
             <div style={{backgroundColor: 'black'}}>
-                <img src={`${process.env.REACT_APP_IMAGES_URL}/${props.item.image}`} alt={props.item.title} style={{maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
+                <img src={props.item.image} alt={props.item.title} style={{maxWidth: '75%', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
             </div>
             <br />
             <div style={{textAlign: 'center'}}>

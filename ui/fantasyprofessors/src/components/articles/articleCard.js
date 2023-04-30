@@ -16,7 +16,7 @@ const ArticleCard = props => {
                     <Card>
                         <CardActionArea>
                         <Link to={`/article/${props.id}`}>
-                                <CardMedia component="img" image={`${process.env.REACT_APP_IMAGES_URL}/${props.image}`} alt={props.title} maxHeight= {window.innerWidth > 800 ? '400' : '250'}/>
+                                <CardMedia component="img" image={props.image} alt={props.title} maxHeight= {window.innerWidth > 800 ? '400' : '250'}/>
                             <CardContent>
                                 <Typography gutterBottom variant='h4' component='div'>{props.title}</Typography>
                                 <Typography variant='body2' color='text.secondary'>{props.teaser}</Typography>
